@@ -6,7 +6,7 @@ import cv2
 import pandas as pd
 from PIL import Image
 
-from utils import *
+from .utils import *
 
 
 # Convert INFOLKS JSON file into YOLO-format labels ----------------------------
@@ -275,7 +275,7 @@ def convert_coco_json(json_dir="../coco/annotations/", use_segments=False, cls91
         # Write labels file
         for img_id, anns in tqdm(imgToAnns.items(), desc=f"Annotations {json_file}"):
             img = images["%g" % img_id]
-            h, w, f = img["height"], img["width"], img["file_name"]
+            h, w, f = img['height'], img['width'], img['file_name'].split('/')[1]
 
             bboxes = []
             segments = []
